@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-container {
+  @apply w-[350px] h-[500px] bg-white shadow-[rgba(0,0,0,0.35)_0px_5px_15px] box-border px-[30px] py-5 rounded-[10px];
+}
+.title {
+  @apply text-center text-[28px] font-extrabold mt-2.5 mb-[30px] mx-0;
+}
+.form {
+  @apply w-full flex flex-col gap-[18px] mb-[15px];
+}
+.input {
+  @apply border box-border px-[15px] py-3 rounded-[20px] border-solid border-[#c0c0c0];
+  outline: 0 !important;
+}
+.page-link {
+  @apply underline text-end text-[#747474] decoration-[#747474] m-0;
+}
+.page-link-label {
+  @apply cursor-pointer text-[9px] font-bold hover:text-black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.form-btn {
+  @apply text-[white] cursor-pointer shadow-[rgba(0,0,0,0.24)_0px_3px_8px] px-[15px] py-2.5 rounded-[20px] border-0 active:shadow-none;
+  outline: 0 !important;
+  background: teal;
+}
+.sign-up-label {
+  @apply text-[10px] text-[#747474] m-0;
+}
+.sign-up-link {
+  @apply text-[11px] underline decoration-[teal] text-[teal] cursor-pointer font-extrabold ml-px;
+}
+.buttons-container {
+  @apply w-full flex flex-col justify-start gap-[15px] mt-5;
+}
+.apple-login-button,
+.google-login-button {
+  @apply box-border shadow-[rgba(0,0,0,0.16)_0px_10px_36px_0px,rgba(0,0,0,0.06)_0px_0px_0px_1px] cursor-pointer flex justify-center items-center text-[11px] gap-[5px] px-[15px] py-2.5 rounded-[20px];
+}
+.apple-login-button {
+  @apply bg-black text-white border-2 border-solid border-black;
+}
+.google-login-button {
+  @apply border-2 border-solid border-[#747474];
+}
+.apple-icon,
+.google-icon {
+  @apply text-lg mb-px;
+}
+
+.sidenavbar-main .navbar_main ul .nav-item {
+  @apply shadow-none;
+}
