@@ -30,7 +30,7 @@ const Navbar = () => {
         </NavItem>
         <NavItem>
           <Link
-            to="/"
+            to="/chat"
             className="bg-white text-brand py-3 px-10 w-fit items-center rounded-xl"
           >
             <IoHomeOutline />

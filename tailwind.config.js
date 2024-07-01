@@ -8,6 +8,9 @@ export default {
         secondary: "#7A7A7A",
         brand: "#32375C",
       },
+      fontFamily: {
+        inter: 'Inter, sans-serif',
+      }
     },
   },
   plugins: [],

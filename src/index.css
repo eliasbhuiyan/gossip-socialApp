@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body{
+  @apply bg-[#f1f1f1]
+}
 .form-container {
   @apply w-[350px] h-[500px] bg-white shadow-[rgba(0,0,0,0.35)_0px_5px_15px] box-border px-[30px] py-5 rounded-[10px];
 }
@@ -54,4 +58,33 @@
 
 .sidenavbar-main .navbar_main ul .nav-item {
   @apply shadow-none;
+}
+
+.name{
+  @apply font-inter font-semibold text-lg text-black
+}
+
+.cardscroll::-webkit-scrollbar {
+  @apply w-2
+}
+
+/* Track */
+.cardscroll::-webkit-scrollbar-track {
+ @apply bg-[#f1f1f1] rounded-xl
+}
+ 
+/* Handle */
+.cardscroll::-webkit-scrollbar-thumb {
+  @apply bg-brand rounded-xl
+}
+
+.sidebar-wraper .sidebar-arrow{
+  @apply hidden
+}
+
+.reveive-message{
+  @apply bg-[#E9E9E9] p-2 rounded-lg w-fit text-base font-inter max-w-[60%]
+}
+.send-message{
+  @apply bg-[#E9E9E9] p-2 rounded-lg w-fit text-base font-inter ml-auto max-w-[60%]
 }
