@@ -9,6 +9,7 @@ import Registration from "./pages/Registration";
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
 import Chat from "./pages/Chat";
+import Profile from "./pages/Profile";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Route>
     )
