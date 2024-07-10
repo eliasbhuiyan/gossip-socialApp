@@ -16,7 +16,6 @@ function App() {
       <Route>
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/chat" element={<Chat />} />

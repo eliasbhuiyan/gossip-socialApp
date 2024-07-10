@@ -1,8 +1,18 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import { useSelector } from "react-redux";
 
 const Layout = () => {
+  const navigate = useNavigate();
+  const loggedUser = useSelector((state) => state.loggedUser.user);
+
+  if (!loggedUser) {
+    useEffect(() => {
+      navigate("/login");
+    }, []);
+  }
+
   return (
     <>
       <Navbar />
