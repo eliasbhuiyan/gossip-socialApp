@@ -7,11 +7,11 @@ const Layout = () => {
   const navigate = useNavigate();
   const loggedUser = useSelector((state) => state.loggedUser.user);
 
-  if (!loggedUser) {
-    useEffect(() => {
+  useEffect(() => {
+    if (!loggedUser) {
       navigate("/login");
-    }, []);
-  }
+    }
+  }, []);
 
   return (
     <>

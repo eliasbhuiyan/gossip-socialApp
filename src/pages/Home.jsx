@@ -7,7 +7,6 @@ import FriendRequest from "../components/FriendRequest";
 import BlockList from "../components/BlockList";
 
 const Home = () => {
-  console.log();
   return (
     <div className="h-screen">
       <div className="flex gap-6 pt-10 h-1/2">
