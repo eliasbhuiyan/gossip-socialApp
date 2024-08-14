@@ -5,6 +5,8 @@ const UserItems = ({ data }) => {
   const db = getDatabase();
   const loggedUser = useSelector((state) => state.loggedUser.user);
   let [friendReqList, setFriendReqList] = useState([]);
+  let [friendList, setFriendList] = useState([]);
+  const [blockList, setBlockList] = useState([])
   const handelReq = () => {
     set(
       push(ref(db, "friendReq/"), {
@@ -31,7 +33,33 @@ const UserItems = ({ data }) => {
       setFriendReqList(arr);
     });
   }, []);
-
+  useEffect(() => {
+    let arr = [];
+    onValue(ref(db, "friendList/"), (snapshot) => {
+      snapshot.forEach((item) => {
+        if (
+          item.val().senderId === loggedUser.uid ||
+          item.val().reciverId == loggedUser.uid
+        ) {
+          arr.push(item.val().senderId + item.val().reciverId);
+        }
+      });
+      setFriendList(arr);
+    });
+  }, []);
+  useEffect(() => {
+    let arr = [];
+    onValue(ref(db, "blockList/"), (snapshot) => {
+      snapshot.forEach((item) => {
+        if(item.val().blockedById === loggedUser.uid || item.val().blockedId === loggedUser.uid){
+          arr.push(item.val().blockedById + item.val().blockedId)
+        }
+      });
+      setBlockList(arr);
+    });
+  }, []);  
+  console.log(blockList);
+  
   return (
     <div className="flex items-center gap-4 mb-4">
       <div className="w-12 h-12 rounded-full overflow-hidden">
@@ -42,13 +70,29 @@ const UserItems = ({ data }) => {
       </div>
       {friendReqList.includes(loggedUser.uid + data.key) ? (
         <button className="ml-auto font-inter text-lg font-normal text-brand">
-          Requested
+          Cancel
         </button>
       ) : friendReqList.includes(data.key + loggedUser.uid) ? (
         <button className="ml-auto font-inter text-lg font-normal text-brand">
-          ""
+          Response
         </button>
-      ) : (
+      ) :
+      friendList.includes(loggedUser.uid + data.key) || friendList.includes(data.key + loggedUser.uid)
+      ?
+      <button
+          className="ml-auto font-inter text-lg font-normal text-brand"
+        >
+          Friends
+        </button>
+      :
+      blockList.includes(loggedUser.uid + data.key) || blockList.includes(data.key + loggedUser.uid)
+      ?
+      <button
+          className="ml-auto font-inter text-lg font-normal text-brand"
+        >
+          Blocked
+        </button>
+      : (
         <button
           onClick={handelReq}
           className="ml-auto font-inter text-lg font-normal text-brand"

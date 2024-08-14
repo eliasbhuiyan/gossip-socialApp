@@ -26,9 +26,17 @@ const FriendRequest = () => {
     <div className="w-1/3 bg-white p-4 rounded-xl">
       <Title title="Friend Requests" />
       <div className="mt-5 pr-4 overflow-y-scroll h-5/6 cardscroll">
-        {friendReqList.map((item) => (
-          <FriendReqItems data={item} key={item.key} />
-        ))}
+        {
+          friendReqList.length > 0
+          ?
+          friendReqList.map((item) => (
+            <FriendReqItems data={item} key={item.key} />
+          ))
+          :
+          <p className="text-center">
+            No Friend request available
+          </p>
+        }
       </div>
     </div>
   );
