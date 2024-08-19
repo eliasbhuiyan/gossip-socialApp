@@ -58,8 +58,6 @@ const UserItems = ({ data }) => {
       setBlockList(arr);
     });
   }, []);  
-  console.log(blockList);
-  
   return (
     <div className="flex items-center gap-4 mb-4">
       <div className="w-12 h-12 rounded-full overflow-hidden">
