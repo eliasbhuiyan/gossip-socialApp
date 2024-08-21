@@ -21,7 +21,8 @@ const MyGroup = () => {
       push(ref(db, "groups/"), {
         groupName: groupName,
         groupImg: '/defaultuser.png',
-        createdBy: loggedUser.uid
+        createdBy: loggedUser.uid,
+        createdByName: loggedUser.displayName,
       }).then(()=>{
         setOpen(false)
         setGroupName("")
@@ -32,7 +33,6 @@ const MyGroup = () => {
     let arr = [];
     onValue(ref(db, "groups/"), (snapshot) => {
       snapshot.forEach((item) => {    
-          console.log(item.val());
           if(item.val().createdBy === loggedUser.uid){
           arr.push({...item.val(), key: item.key})
           }
@@ -42,7 +42,7 @@ const MyGroup = () => {
     });
   }, []);
   return (
-    <div className="w-1/3 bg-white p-4 rounded-xl relative">
+    <div className="w-1/3 bg-white p-4 rounded-xl relative overflow-hidden">
       <Title title="My Groups" click={setOpen}/>
       <Search />
       <div className="mt-5 pr-4 overflow-y-scroll h-4/6 cardscroll">
