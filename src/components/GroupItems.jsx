@@ -36,6 +36,7 @@ const GroupItems = ({data}) => {
       groupName: data.groupName,
       memberName: userData.displayName,
       memberId: userData.key,
+      createdBy: data.createdBy
     })
   );
   }

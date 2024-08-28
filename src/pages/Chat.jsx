@@ -37,13 +37,16 @@ const Chat = () => {
 
   useEffect(() => {
     let arr = [];
-    onValue(ref(db, "groups/"), (snapshot) => {
-      snapshot.forEach((item) => {    
-          arr.push({...item.val(), key: item.key})          
+    onValue(ref(db, "groupMembers/"), (snapshot) => {
+      snapshot.forEach((item) => { 
+        if(item.val().createdBy === loggedUser.uid || item.val().memberId === loggedUser.uid){
+          arr.push({...item.val(), key: item.key})        
+        }   
       });
       setGroupList(arr);
     });
   }, []);
+  
   return (
     <div className="py-10 h-screen flex justify-center">
       <div className="w-1/3 h-full bg-white p-4 rounded-l-xl">

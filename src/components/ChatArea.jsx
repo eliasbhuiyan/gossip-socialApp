@@ -14,7 +14,6 @@ const ChatArea = () => {
   const activeType = useSelector((state) => state.activeChat.active?.type);
   const db = getDatabase();
   const handelSendMsg = () => {
-    console.log(loggedUser);
     if (activeType === "single") {
       set(
         push(ref(db, "allchat/"), {
@@ -31,7 +30,7 @@ const ChatArea = () => {
         push(ref(db, "allchat/"), {
           senderMsg: message,
           senderId: loggedUser.uid,
-          reciverID: activeChat.key,
+          groupID: activeChat.groupId,
           type: "group",
         }).then(() => {
           setMessage("");
@@ -44,8 +43,7 @@ const ChatArea = () => {
     let arr = [];
     onValue(ref(db, "allchat/"), (snapshot) => {
       snapshot.forEach((item) => {
-        console.log(item.val().type, activeType);
-        if (item.val().type === "single") {
+        if (activeType === "single") {
           if (
             (item.val().reciverID === loggedUser.uid ||
               item.val().senderId === loggedUser.uid) &
@@ -54,19 +52,15 @@ const ChatArea = () => {
           ) {
             arr.push({ ...item.val(), key: item.key });
           }
-        } else if (item.val().type === "group") {
-          if (
-            item.val().reciverID === activeChat.key ||
-            item.val().senderId === loggedUser.uid
-          ) {
+        } else if (activeType === "group" && item.val().type === "group") {
+          if (item.val().groupID === activeChat.groupId) {
             arr.push({ ...item.val(), key: item.key });
           }
         }
       });
       setMessageList(arr);
     });
-  }, [activeChat?.friendId || activeChat?.key]);
-  // console.log(messageList);
+  }, [activeChat?.key]);
 
   return (
     <div className="bg-white w-1/2 border-l rounded-r-xl flex flex-col pb-2">
@@ -92,12 +86,21 @@ const ChatArea = () => {
       {/* Chat Area Start*/}
       <div className="p-5 flex flex-col gap-3">
         {messageList.map((item) =>
-          item.senderId === loggedUser.uid ? (
-            <p className="send-message">{item.senderMsg}</p>
-          ) : (
-            item.reciverID === loggedUser.uid && (
-              <p className="reveive-message">{item.senderMsg}</p>
+          item.type === "single" ? (
+            item.senderId === loggedUser.uid ? (
+              <p className="send-message">{item.senderMsg}</p>
+            ) : (
+              item.reciverID === loggedUser.uid && (
+                <p className="reveive-message">{item.senderMsg}</p>
+              )
             )
+          ) : (
+            item.type === "group" &&
+            (item.senderId === loggedUser.uid ? (
+              <p className="send-message">{item.senderMsg}</p>
+            ) : (
+              <p className="reveive-message">{item.senderMsg}</p>
+            ))
           )
         )}
       </div>

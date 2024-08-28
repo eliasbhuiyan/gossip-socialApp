@@ -18,7 +18,6 @@ const AllGroup = () => {
       setGroupList(arr);
     });
   }, []);
-  console.log(groupList);
   
   return (
     <div className="w-1/3 bg-white p-4 rounded-xl relative">
