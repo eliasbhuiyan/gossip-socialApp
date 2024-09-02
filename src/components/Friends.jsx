@@ -9,8 +9,8 @@ const Friends = () => {
   const loggedUser = useSelector((state) => state.loggedUser.user);
   const db = getDatabase();
   useEffect(() => {
-    let arr = [];
     onValue(ref(db, "friendList/"), (snapshot) => {
+      let arr = [];
       snapshot.forEach((item) => {
         if (item.val().senderId === loggedUser.uid) {
           arr.push({

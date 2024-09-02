@@ -10,8 +10,8 @@ const AllGroup = () => {
   const db = getDatabase();
   const [groupList, setGroupList] = useState([])
   useEffect(() => {
-    let arr = [];
     onValue(ref(db, "groups/"), (snapshot) => {
+      let arr = [];
       snapshot.forEach((item) => {    
           arr.push({...item.val(), key: item.key})          
       });

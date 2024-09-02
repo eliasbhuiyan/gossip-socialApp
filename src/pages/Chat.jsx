@@ -12,8 +12,8 @@ const Chat = () => {
   const loggedUser = useSelector((state) => state.loggedUser.user);
   const db = getDatabase();
   useEffect(() => {
-    let arr = [];
     onValue(ref(db, "friendList/"), (snapshot) => {
+      let arr = [];
       snapshot.forEach((item) => {
         if (item.val().senderId === loggedUser.uid) {
           arr.push({
@@ -36,8 +36,8 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    let arr = [];
     onValue(ref(db, "groupMembers/"), (snapshot) => {
+      let arr = [];
       snapshot.forEach((item) => { 
         if(item.val().createdBy === loggedUser.uid || item.val().memberId === loggedUser.uid){
           arr.push({...item.val(), key: item.key})        
@@ -48,7 +48,7 @@ const Chat = () => {
   }, []);
   
   return (
-    <div className="py-10 h-screen flex justify-center">
+    <div className="py-10 h-screen  overflow-y-scroll flex justify-center">
       <div className="w-1/3 h-full bg-white p-4 rounded-l-xl">
         <Title title="Chat" />
         <Search />

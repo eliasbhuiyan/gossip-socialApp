@@ -20,8 +20,8 @@ const UserItems = ({ data }) => {
     );
   };
   useEffect(() => {
-    let arr = [];
     onValue(ref(db, "friendReq/"), (snapshot) => {
+      let arr = [];
       snapshot.forEach((item) => {
         if (
           item.val().senderId === loggedUser.uid ||
@@ -34,8 +34,8 @@ const UserItems = ({ data }) => {
     });
   }, []);
   useEffect(() => {
-    let arr = [];
     onValue(ref(db, "friendList/"), (snapshot) => {
+      let arr = [];
       snapshot.forEach((item) => {
         if (
           item.val().senderId === loggedUser.uid ||
@@ -48,8 +48,8 @@ const UserItems = ({ data }) => {
     });
   }, []);
   useEffect(() => {
-    let arr = [];
     onValue(ref(db, "blockList/"), (snapshot) => {
+      let arr = [];
       snapshot.forEach((item) => {
         if(item.val().blockedById === loggedUser.uid || item.val().blockedId === loggedUser.uid){
           arr.push(item.val().blockedById + item.val().blockedId)

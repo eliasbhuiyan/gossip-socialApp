@@ -4,7 +4,6 @@ import { activeChat } from '../reducer/chatSlice'
 
 const GroupChatItems = ({data}) => {
   const dispatch = useDispatch()
-  console.log(data);
   
   return (
     <div onClick={()=>dispatch(activeChat({...data, type: "group"}))} className="flex items-center gap-4 mb-4 cursor-pointer">

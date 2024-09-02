@@ -30,8 +30,8 @@ const MyGroup = () => {
     );
   }
   useEffect(() => {
-    let arr = [];
     onValue(ref(db, "groups/"), (snapshot) => {
+      let arr = [];
       snapshot.forEach((item) => {    
           if(item.val().createdBy === loggedUser.uid){
           arr.push({...item.val(), key: item.key})

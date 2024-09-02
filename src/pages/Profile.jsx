@@ -73,7 +73,6 @@ const Profile = () => {
       }
     );
   };
-  console.log();
   return (
     <div className="p-10 bg-[#F4F4F4] w-fit flex flex-col items-center gap-10 m-auto mt-24 shadow">
       <ToastContainer
