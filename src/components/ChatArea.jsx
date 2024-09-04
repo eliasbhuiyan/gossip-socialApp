@@ -119,7 +119,9 @@ const ChatArea = () => {
       </div>
       {/* Chat Area Start*/}
       {/* <div className=""> */}
-      <ScrollToBottom className={`${emojiToggle ? "h-1/4" : "h-3/4"} messageArea`}>
+      <ScrollToBottom
+        className={`${emojiToggle ? "h-1/4" : "h-3/4"} messageArea`}
+      >
         {messageList.map((item) =>
           item.type === "single" ? (
             item.senderId === loggedUser.uid ? (
@@ -188,6 +190,7 @@ const ChatArea = () => {
           type="file"
           id="image"
           className="hidden"
+          accept="image/png, image/gif, image/jpeg"
         />
         {chatImage && (
           <div className="absolute left-0 bottom-full border-2 w-20">
